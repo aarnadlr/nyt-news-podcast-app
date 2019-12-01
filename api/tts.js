@@ -10,20 +10,20 @@ const client = new textToSpeech.TextToSpeechClient();
 const text = 'Text to synthesize. Hello';
 const outputFile = 'output.mp3';
 
-module.exports = async (req, res) => {
+module.exports = (req, res) => {
 
-  const request = {
-    input: { text: text },
-    voice: { languageCode: 'en-US', ssmlGender: 'FEMALE' },
-    audioConfig: { audioEncoding: 'MP3' }
-  };
-
-  const [response] = await client.synthesizeSpeech(request);
-  const writeFile = util.promisify(fs.writeFile);
-
-  await writeFile(outputFile, response.audioContent, 'binary');
-
-  console.log(`Audio content written to file: ${outputFile}`);
+  // const request = {
+  //   input: { text: text },
+  //   voice: { languageCode: 'en-US', ssmlGender: 'FEMALE' },
+  //   audioConfig: { audioEncoding: 'MP3' }
+  // };
+  //
+  // const [response] = await client.synthesizeSpeech(request);
+  // const writeFile = util.promisify(fs.writeFile);
+  //
+  // await writeFile(outputFile, response.audioContent, 'binary');
+  //
+  // console.log(`Audio content written to file: ${outputFile}`);
 
   res.json({
     // body: req.body,
