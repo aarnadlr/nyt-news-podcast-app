@@ -7,6 +7,8 @@ function App() {
     'Loading...'
   );
 
+  const [responseObject, setResponseObject] = useState(null)
+
   let finalSingleString = '';
 
   let introWithLongString = 'unset';
@@ -41,8 +43,9 @@ function App() {
     return introWithLongString;
   }; //<--END OF buildString()
 
-  useEffect(() => {
 
+
+  useEffect(() => {
 
     async function fetchArticles() {
       // 1. store the response
@@ -50,16 +53,13 @@ function App() {
         'https://api.nytimes.com/svc/topstories/v2/home.json?api-key=YFNhGhkzEe0Yq3KwV25z5b7qNvzGYmne'
       );
       // 2. store the converted JSON
-      const myJson = await response.json();
+      // const myJson = await response.json();
       // 3. Do stuff
-      let introWithLongString = buildString(myJson);
+      // let introWithLongString = buildString(myJson);
 
       // console.log("FROM NYT API FETCH SERVER ROUTE:", JSON.stringify(introWithLongString));
 
     };
-
-
-
 
     ////
 
@@ -81,7 +81,9 @@ function App() {
 
       const myJson2 = await response2.json();
 
-      console.log("FROM TTS SERVER ROUTE:", JSON.stringify(myJson2));
+      console.log("FULL RESPONSE OBJ FROM TTS SERVER ROUTE:", JSON.stringify(myJson2));
+
+      setResponseObject(myJson2)
     }
 
 

@@ -1,0 +1,7 @@
+{
+  "name": "nyt-news-podcast-app",
+  "version": 2,
+  "env": {
+    "GOOGLE_APPLICATION_CREDENTIALS": "@google-application-credentials"
+  }
+}
