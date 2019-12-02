@@ -5,6 +5,7 @@
   "dependencies": {
     "@google-cloud/text-to-speech": "2.0.2",
     "dotenv": "8.2.0",
+    "lamejs": "1.2.0",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-scripts": "2.1.1",

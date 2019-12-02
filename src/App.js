@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import lamejs from 'lamejs';
 
 function App() {
   const [totalNumOfArticles, setTotalNumOfArticles] = useState(null);
@@ -83,7 +84,9 @@ function App() {
 
       console.log("FULL RESPONSE OBJ FROM TTS SERVER ROUTE:", JSON.stringify(myJson2));
 
-      setResponseObject(myJson2)
+      setResponseObject(myJson2);
+
+      await encodeBuffer();
     }
 
 
@@ -95,8 +98,38 @@ function App() {
     }
 
     callBothFetches();
+    // window.setTimeout(encodeBuffer(), 12000) ;
+
 
   }, []); //<--END OF UseEffect
+
+
+
+
+  async function encodeBuffer(){
+    let mp3Data = [];
+
+    let mp3encoder = new lamejs.Mp3Encoder(1, 44100, 128); //mono 44.1khz encode to 128kbps
+    let samples = responseObject && responseObject.body.data; //one second of silence replace that with your own samples
+    let mp3Tmp = samples && mp3encoder.encodeBuffer(samples); //encode mp3
+
+    //Push encode buffer to mp3Data variable
+    await mp3Data.push(mp3Tmp);
+
+    // Get end part of mp3
+    mp3Tmp = await mp3encoder.flush();
+
+    // Write last data to the output data, too
+    // mp3Data contains now the complete mp3Data
+    mp3Data.push(mp3Tmp);
+
+    console.debug('mp3Data:',mp3Data);
+  };
+
+
+
+
+
 
   return (
     <div
