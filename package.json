@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@google-cloud/text-to-speech": "2.0.2",
+    "@google-cloud/text-to-speech": "6.4.0",
     "dotenv": "8.2.0",
     "lamejs": "1.2.0",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
-    "react-scripts": "2.1.1",
+    "react-scripts": "5.0.1",
     "react-speech-kit": "2.0.2"
   },
   "scripts": {
